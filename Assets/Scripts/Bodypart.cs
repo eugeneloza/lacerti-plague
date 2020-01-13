@@ -17,10 +17,9 @@ namespace Bodypart
 	  /* Pass damage to this bodypart
 	     Returns amount of damage not absorbed by skin, muscles and bones
          Body should pass it down to internal organs if applicable */
-	  public void Damage(float dam, TDamageType damType)
+	  public float Damage(float dam, TDamageType damType)
 	  {
 		float remainingDamage = dam;
-		//remainingDamage = clothesLayers.Damage(remainingDamage, damType);
 		remainingDamage = skin.Damage(remainingDamage, damType);
 		remainingDamage = muscle.Damage(remainingDamage, damType);
 		remainingDamage = bone.Damage(remainingDamage, damType);
