@@ -1,17 +1,26 @@
 using UnityEngine;
 using Bodypart;
+using InternalOrgan;
 
 namespace Body
 {
   /* Abstract body shared by all possible creatures */
   public abstract class TAbstractBody
   {
+	/* An abstract array of bodyparts of this creature */
     public TBodypart[] bodyparts;
-	
   }
   
+  public abstract class TBiologicalBody : TAbstractBody
+  {
+	/* Every biological creature has these three internal organs */
+	public TInternalOrgan brain;
+	public TInternalOrgan lungs;
+	public TInternalOrgan stomach;
+  }	  
+  
   /* Humanoid body, also note that only humanoids can wear clothes */
-  public class THumanoidBody: TAbstractBody
+  public class THumanoidBody: TBiologicalBody
   {
 	/* Humanoid bodyparts, total 8 pieces */
     public enum TBodyparts
