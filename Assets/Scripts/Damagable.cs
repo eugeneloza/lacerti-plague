@@ -42,7 +42,7 @@ namespace Damagable
 	  public void Break()
 	  {
 		//not sure what to do here, maybe send callback to the body?
-		Debug.Log("Item " + name + " broken");
+		Debug.Log("Object " + name + " broken");
 	  }
 	  /* deals damage to this object and returns damage that is passed to the "lower level" */
 	  public float Damage(float dam, TDamageType damType)
