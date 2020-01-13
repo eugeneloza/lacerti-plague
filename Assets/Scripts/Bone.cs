@@ -11,6 +11,7 @@ namespace Bone
 	/* CONSTRUCTOR */
 	public TBone()
 	{
+	  name = "bones";
 	  MaxMaxDurability = 1000f;
 	  absorbDamage[(int)TDamageType.Blunt] = 10f;
 	  absorbDamage[(int)TDamageType.Scratch] = 10f;

@@ -12,6 +12,7 @@ namespace Skin
 	/* CONSTRUCTOR */
 	public TSkin()
 	{
+	  name = "skin";
 	  MaxMaxDurability = 100f;
 	  absorbDamage[(int)TDamageType.Blunt] = 1f;
 	  absorbDamage[(int)TDamageType.Scratch] = 0f;

@@ -10,6 +10,7 @@ namespace Muscle
 	/* CONSTRUCTOR */
 	public TMuscle()
 	{
+	  name = "muscles";
 	  MaxMaxDurability = 100f;
 	  absorbDamage[(int)TDamageType.Blunt] = 3f;
 	  absorbDamage[(int)TDamageType.Scratch] = 1f;
