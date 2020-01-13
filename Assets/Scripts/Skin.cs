@@ -1,8 +1,12 @@
 using UnityEngine;
 using Damagable;
+using DamageType;
 
 namespace Skin
 {
+  /* Skin is the topmost layer of the body, located right under clothes
+     just like clothes it can get dirty or be damaged, however like every other
+     biological tissue it regenerates over time */
   public class TSkin: TDirty
   {
 	/* CONSTRUCTOR */

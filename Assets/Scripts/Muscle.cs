@@ -1,5 +1,6 @@
 using UnityEngine;
 using Damagable;
+using DamageType;
 
 namespace Muscle
 {
