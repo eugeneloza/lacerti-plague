@@ -12,15 +12,20 @@ namespace Bodypart
 	  //TMuscle muscle;
 	  //TBone bone;
 	  //TInternal internal;
-	  public void TakeDamage(float dam, TDamageType damType)
+	  public void Damage(float dam, TDamageType damType)
 	  {
 		float remainingDamage = dam;
-		//remainingDamage = clothesLayers.Damage(remainingDamage);
+		//remainingDamage = clothesLayers.Damage(remainingDamage, damType);
 		remainingDamage = skin.Damage(remainingDamage, damType);
-		//remainingDamage = muscle.Damage(remainingDamage);
-		//remainingDamage = bone.Damage(remainingDamage);
-		//remainingDamage = internal.Damage(remainingDamage);
+		//remainingDamage = muscle.Damage(remainingDamage, damType);
+		//remainingDamage = bone.Damage(remainingDamage, damType);
+		//remainingDamage = internal.Damage(remainingDamage, damType);
 		Debug.Assert(remainingDamage <= 0, "ERROR: Bodypart must completely absorb all incoming damage!"); //this can normally happen if internal organ or bone is destroyed
+	  }
+	  /* CONSTRUCTOR */
+	  public TBodypart()
+	  {
+	    skin = new TSkin();  
 	  }
 	}
 }
