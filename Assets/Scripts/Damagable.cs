@@ -1,4 +1,5 @@
 using UnityEngine;
+using DamageType;
 
 namespace Damagable
 {
@@ -7,23 +8,35 @@ namespace Damagable
 	  /* Name of this object */
 	  public string name;
 	  /* Durability of this object in its perfect state */
-	  public float maxMaxDurability = 100f; //100 damage points
+	  private float maxMaxDurability;
+	  public float MaxMaxDurability
+	  { 
+	    get { return maxMaxDurability ;}
+		set { maxMaxDurability = value; MaxDurability = maxMaxDurability; }
+	  }
 	  /* Current "maximum durability" of this object
 		 it diminishes by repairing, and the object can never be 
 		 repaired over this value.
 		 some objects (such as peculari and biological tissues)
 		 can regenerate this value up to maxMaxDurability with time */
-	  public float maxDurability = 100f;
+	  private float maxDurability;
+	  public float MaxDurability
+	  {
+		get { return maxDurability; }
+		set { maxDurability = value; Durability = maxDurability; }
+	  }
 	  /* Current durability of this item */
-	  public float durability;
+	  //private float durability;
+	  public float Durability
+	  { get; set; }
 	  //how much damage is completely absorbed
-	  public float absorbDamage = 10f; //10 damage points
+	  public float[] absorbDamage; 
 	  //what portion of unabsorbed damage is received by this object
-	  public float receiveDamageRate = 0.5f; //50%
+	  public float[] damageResist;
 	  //is this object broken?
 	  public bool isBroken()
 	  {
-		return durability <= 0;
+		return Durability <= 0;
 	  }
 	  //break this object
 	  public void Break()
@@ -32,16 +45,16 @@ namespace Damagable
 		Debug.Log("Item " + name + " broken");
 	  }
 	  //deals damage to this object and returns damage that is passed to the "lower level"
-	  public float Damage(float dam)
+	  public float Damage(float dam, TDamageType damType)
 	  {
 		if (!isBroken())
 		{
 		  //absorbDamage is completely gone from the incoming damage
-		  float remainingDamage = dam - absorbDamage;
+		  float remainingDamage = dam - absorbDamage[(int)damType];
 		  if (remainingDamage > 0)
 		  {
-			float blockedDamage = remainingDamage * receiveDamageRate;
-			durability -= blockedDamage;
+			float blockedDamage = remainingDamage * damageResist[(int)damType];
+			Durability -= blockedDamage;
 			if (isBroken())
 			{
 			  Break();
@@ -66,5 +79,18 @@ namespace Damagable
 			return dam;
 		}
 	  }
+	  /* CONSTRUCTOR */
+	  public TDamagable()
+	  {
+		 MaxMaxDurability = 100f;
+		 absorbDamage[(int)TDamageType.Blunt] = 5f;
+		 absorbDamage[(int)TDamageType.Scratch] = 0f;
+		 absorbDamage[(int)TDamageType.Cut] = 0f;
+		 absorbDamage[(int)TDamageType.Piercing] = 0f;
+		 damageResist[(int)TDamageType.Blunt] = 0.5f;
+		 damageResist[(int)TDamageType.Scratch] = 0.8f;
+		 damageResist[(int)TDamageType.Cut] = 0.3f;
+		 damageResist[(int)TDamageType.Piercing] = 0.1f;
+      }
 	}
 }
