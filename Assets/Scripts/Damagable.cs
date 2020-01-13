@@ -29,22 +29,22 @@ namespace Damagable
 	  //private float durability;
 	  public float Durability
 	  { get; set; }
-	  //how much damage is completely absorbed
+	  /* how much damage is completely absorbed */
 	  public float[] absorbDamage; 
-	  //what portion of unabsorbed damage is received by this object
+	  /* what portion of unabsorbed damage is received by this object */
 	  public float[] damageResist;
-	  //is this object broken?
+	  /* is this object broken? */
 	  public bool isBroken()
 	  {
 		return Durability <= 0;
 	  }
-	  //break this object
+	  /* break this object */
 	  public void Break()
 	  {
 		//not sure what to do here, maybe send callback to the body?
 		Debug.Log("Item " + name + " broken");
 	  }
-	  //deals damage to this object and returns damage that is passed to the "lower level"
+	  /* deals damage to this object and returns damage that is passed to the "lower level" */
 	  public float Damage(float dam, TDamageType damType)
 	  {
 		if (!isBroken())
