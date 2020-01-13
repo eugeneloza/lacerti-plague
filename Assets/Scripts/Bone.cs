@@ -4,8 +4,9 @@ using DamageType;
 
 namespace Bone
 {
-  /* Bone structure of the bodypart */
-  public class TBone: TInfectable
+  /* Bone structure of the bodypart
+     Bones do not get infected, nor do they get dirty */
+  public class TBone: TDamagable
   {
 	/* CONSTRUCTOR */
 	public TBone()

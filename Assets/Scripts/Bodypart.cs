@@ -8,12 +8,15 @@ namespace Bodypart
 {
 	public class TBodypart
 	{
-	  /* Clothes and biological layers in/over this bodypart */
-	  //TClothesLayers clothesLayers; //let Body handle clothes!
-	  TSkin skin;
-	  TMuscle muscle;
-	  TBone bone;
-	  //TInternal internal;
+	  /* Skin covering this bodypart */
+	  public TSkin skin;
+	  /* Muscular tissues of this bodypart */
+	  public TMuscle muscle;
+	  /* Bone structure of this bodypart */
+	  public TBone bone;
+	  /* Pass damage to this bodypart
+	     Returns amount of damage not absorbed by skin, muscles and bones
+         Body should pass it down to internal organs if applicable */
 	  public void Damage(float dam, TDamageType damType)
 	  {
 		float remainingDamage = dam;
@@ -21,13 +24,14 @@ namespace Bodypart
 		remainingDamage = skin.Damage(remainingDamage, damType);
 		remainingDamage = muscle.Damage(remainingDamage, damType);
 		remainingDamage = bone.Damage(remainingDamage, damType);
-		//remainingDamage = internal.Damage(remainingDamage, damType);
-		Debug.Assert(remainingDamage <= 0, "ERROR: Bodypart must completely absorb all incoming damage!"); //this can normally happen if internal organ or bone is destroyed
+		return remainingDamage;
 	  }
 	  /* CONSTRUCTOR */
 	  public TBodypart()
 	  {
-	    skin = new TSkin();  
+	    skin = new TSkin();
+		muscle = new TMuscle();
+		bone = new TBone();
 	  }
 	}
 }
