@@ -11,12 +11,22 @@ namespace Body
     public TBodypart[] bodyparts;
   }
   
+  /* While ironbloods are still biological creatures, they should be treated separately */
+  
+  /* Biological creatures, made of flesh and bone */
   public abstract class TBiologicalBody : TAbstractBody
   {
 	/* Every biological creature has these three internal organs */
-	public TInternalOrgan brain;
-	public TInternalOrgan lungs;
-	public TInternalOrgan stomach;
+	public TBrain brain;
+	public TLungs lungs;
+	public TStomach stomach;
+	/* CONSTRUCTOR */
+	public TBiologicalBody()
+	{
+	  brain = new TBrain();
+	  lungs = new TLungs();
+	  stomach = new TStomach();
+	}
   }	  
   
   /* Humanoid body, also note that only humanoids can wear clothes */

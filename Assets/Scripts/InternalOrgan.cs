@@ -5,7 +5,7 @@ using DamageType;
 namespace InternalOrgan
 {
   /* Internal organs */
-  public class TInternalOrgan: TInfectable
+  public abstract class TInternalOrgan: TInfectable
   {
 	/* CONSTRUCTOR */
 	public TInternalOrgan()
@@ -21,5 +21,29 @@ namespace InternalOrgan
 	  damageResist[(int)TDamageType.Cut] = 1.0f;
 	  damageResist[(int)TDamageType.Piercing] = 1.0f;
     }    
+  }
+  
+  public class TBrain: TInternalOrgan
+  {
+	public TBrain()
+	{
+	  name = "brain";
+	}
+  }
+  
+  public class TLungs: TInternalOrgan
+  {
+	public TLungs()
+	{
+	  name = "lungs and heart";
+	}
+  }
+  
+  public class TStomach: TInternalOrgan
+  {
+	public TStomach()
+	{
+	  name = "stomach and guts";
+	}
   }
 }
