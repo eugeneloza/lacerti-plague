@@ -3,7 +3,7 @@ using DamageType;
 
 namespace Damagable
 {
-	public class TDamagable
+	public abstract class TDamagable
 	{
 	  /* Name of this object */
 	  public string name;
@@ -79,18 +79,17 @@ namespace Damagable
 			return dam;
 		}
 	  }
-	  /* CONSTRUCTOR */
-	  public TDamagable()
-	  {
-		 MaxMaxDurability = 100f;
-		 absorbDamage[(int)TDamageType.Blunt] = 5f;
-		 absorbDamage[(int)TDamageType.Scratch] = 0f;
-		 absorbDamage[(int)TDamageType.Cut] = 0f;
-		 absorbDamage[(int)TDamageType.Piercing] = 0f;
-		 damageResist[(int)TDamageType.Blunt] = 0.5f;
-		 damageResist[(int)TDamageType.Scratch] = 0.8f;
-		 damageResist[(int)TDamageType.Cut] = 0.3f;
-		 damageResist[(int)TDamageType.Piercing] = 0.1f;
-      }
+	}
+	
+	/* Object that can get dirty, such as skin or clothes */
+	public abstract class TDirty : TDamagable
+	{
+	  
+	}
+	
+	/* Object that can get infected, such as muscles or internal organs */
+	public abstract class TInfectable : TDamagable
+	{
+		
 	}
 }
