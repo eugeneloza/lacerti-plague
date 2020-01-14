@@ -87,7 +87,7 @@ namespace Damagable
 	public abstract class TDirty : TDamagable
 	{
 	  /* CONSTRUCTOR */
-	  public TDamagable() : base() {}
+	  public TDirty() : base() {}
 	}
 	
 	/* Object that can get infected, such as muscles or internal organs */
