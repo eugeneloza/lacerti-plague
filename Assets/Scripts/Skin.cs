@@ -10,7 +10,7 @@ namespace Skin
   public class TSkin: TDirty
   {
 	/* CONSTRUCTOR */
-	public TSkin()
+	public TSkin() : base()
 	{
 	  name = "skin";
 	  MaxMaxDurability = 100f;

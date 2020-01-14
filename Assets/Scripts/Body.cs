@@ -9,6 +9,7 @@ namespace Body
   {
 	/* An abstract array of bodyparts of this creature */
     public TBodypart[] bodyparts;
+	public TAbstractBody() {}
   }
   
   /* While ironbloods are still biological creatures, they should be treated separately */
@@ -21,7 +22,7 @@ namespace Body
 	public TLungs lungs;
 	public TStomach stomach;
 	/* CONSTRUCTOR */
-	public TBiologicalBody()
+	public TBiologicalBody() : base()
 	{
 	  brain = new TBrain();
 	  lungs = new TLungs();
@@ -45,7 +46,7 @@ namespace Body
 	  //LFoot, RFoot //maybe leave only legs
 	};	  
 	 /* CONSTRUCTOR */
-	 public THumanoidBody()
+	 public THumanoidBody() : base()
 	 {
 	    bodyparts[(int)TBodyparts.Head] = new TBodypart();
 	    bodyparts[(int)TBodyparts.LArm] = new TBodypart();

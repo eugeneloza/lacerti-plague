@@ -8,7 +8,7 @@ namespace InternalOrgan
   public abstract class TInternalOrgan: TInfectable
   {
 	/* CONSTRUCTOR */
-	public TInternalOrgan()
+	public TInternalOrgan() : base()
 	{
 	  MaxMaxDurability = 500f;
 	  absorbDamage[(int)TDamageType.Blunt] = 0f;
@@ -25,7 +25,7 @@ namespace InternalOrgan
   
   public class TBrain: TInternalOrgan
   {
-	public TBrain()
+	public TBrain() : base()
 	{
 	  name = "brain";
 	}
@@ -33,7 +33,7 @@ namespace InternalOrgan
   
   public class TLungs: TInternalOrgan
   {
-	public TLungs()
+	public TLungs() : base()
 	{
 	  name = "lungs and heart";
 	}
@@ -41,7 +41,7 @@ namespace InternalOrgan
   
   public class TStomach: TInternalOrgan
   {
-	public TStomach()
+	public TStomach() : base()
 	{
 	  name = "stomach and guts";
 	}

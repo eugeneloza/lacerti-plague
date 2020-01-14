@@ -8,7 +8,7 @@ namespace Muscle
   public class TMuscle: TInfectable
   {
 	/* CONSTRUCTOR */
-	public TMuscle()
+	public TMuscle() : base()
 	{
 	  name = "muscles";
 	  MaxMaxDurability = 100f;

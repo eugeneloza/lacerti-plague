@@ -9,7 +9,7 @@ namespace Bone
   public class TBone: TDamagable
   {
 	/* CONSTRUCTOR */
-	public TBone()
+	public TBone() : base()
 	{
 	  name = "bones";
 	  MaxMaxDurability = 1000f;

@@ -79,17 +79,21 @@ namespace Damagable
 			return dam;
 		}
 	  }
+	  /* CONSTRUCTOR */
+	  public TDamagable() {}
 	}
 	
 	/* Object that can get dirty, such as skin or clothes */
 	public abstract class TDirty : TDamagable
 	{
-	  
+	  /* CONSTRUCTOR */
+	  public TDamagable() : base() {}
 	}
 	
 	/* Object that can get infected, such as muscles or internal organs */
 	public abstract class TInfectable : TDamagable
 	{
-		
+	  /* CONSTRUCTOR */
+	  public TInfectable() : base() {}
 	}
 }
