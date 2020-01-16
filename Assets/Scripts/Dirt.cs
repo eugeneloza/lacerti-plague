@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace DirtVolume
 {
@@ -20,12 +21,17 @@ namespace DirtVolume
     /* Sticky dirt type can hold 10x its volume of other reagents */
     public const float StickyRatio = 10f; 
     /* Volumes of every type of dirt in this volume */
-    public TDirtType[] Value;
+    public float[] Value;
     /* Total volume of the dirt */
     public float Volume()
     {
-      return 0;
-    }  
+      float v = 0;
+      foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
+      {
+        v += Value[(int)d];
+      }
+      return v;
+    }
     /* CONSTRUCTOR */
     public TDirtVolume() {}
   }
