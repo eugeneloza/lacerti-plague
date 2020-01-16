@@ -8,6 +8,7 @@ namespace DamageType
     Scratch,
     Cut,
     Piercing,
-    Acid
+    Acid,
+    Flame
   }
 }

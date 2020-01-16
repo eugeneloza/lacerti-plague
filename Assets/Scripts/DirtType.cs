@@ -8,8 +8,9 @@ namespace DirtType
     Water,        //Quickly dries up, but large volumes of water can be used to remove other types of dirt; but maybe we'd want a different rinse mechanics
     Harmless,     //just a waste-volume of dirt on the surface. Doesn't do anything.
     //Smelly,       //Smells bad, nothing else
-    Carbonis, Ferrumis,   //concentration of Lacerti Plague agents; slowly absorbed through the skin
-    //Natriumis, Magnesiumis, //fish-only infection, will immediately catch fire in contact with oxygen
+    Carbonis, Ferrumis,     //concentration of Lacerti Plague agents; slowly absorbed through the skin
+    Argentumis,             //unique infection stamms
+    Natriumis, Magnesiumis, //fish-only infection, will immediately catch fire in contact with oxygen
     Disease,      //any non-lacerti disease; slowly absorbed through the skin
     Sticky,       //keeps all other dirt types on the surface
     Suppressant,  //suppresses Lacerti Plague agents; slowly absorbed through the skin
