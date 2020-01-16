@@ -8,7 +8,11 @@ namespace Damagable
   {
     /* Name of this object */
     public string name;
-    /* Durability of this object in its perfect state */
+    /* Regeneration rate of this organ in units per second */
+    public float regenRate;
+    public float regenMaxRate;
+    /* Durability of this object in its perfect state
+       it is never intended to be changed after created */
     private float maxMaxDurability;
     public float MaxMaxDurability
     { 
@@ -80,6 +84,13 @@ namespace Damagable
         return dam;
       }
     }
+    /* Update this object state */
+    public virtual void Update(float deltaTime)
+    {
+      //todo: wrong setters! Max > MaxMax
+      Durability += regenRate * deltaTime;
+      MaxDurability += regenMaxRate * deltaTime;
+    }
     /* CONSTRUCTOR */
     public TDamagable() {}
   }
@@ -89,6 +100,12 @@ namespace Damagable
   {
     /* Dirt stuck to the surface of this object */
     public TDirtVolume Dirt;
+    public override void Update(float deltaTime)
+    {
+      base.Update(deltaTime);
+      Damage(Dirt.GetAcidDamage(deltaTime), TDamageType.Acid);
+      Dirt.Update(deltaTime);
+    }
     /* CONSTRUCTOR */
     public TDirty() : base()
     {
@@ -99,6 +116,12 @@ namespace Damagable
   /* Object that can get infected, such as muscles or internal organs */
   public abstract class TInfectable : TDamagable
   {
+    //todo
+    public override void Update(float deltaTime)
+    {
+      base.Update(deltaTime);
+      //todo
+    }    
     /* CONSTRUCTOR */
     public TInfectable() : base() {}
   }

@@ -7,8 +7,16 @@ namespace Body
   /* Abstract body shared by all possible creatures */
   public abstract class TAbstractBody
   {
-  /* An abstract array of bodyparts of this creature */
+    /* An abstract array of bodyparts of this creature */
     public TBodypart[] bodyparts;
+    /* Update this body */
+    public virtual void Update(float deltaTime)
+    {
+      foreach (TBodypart b in bodyparts)
+      {
+        b.Update(deltaTime);
+      }
+    }
     /* CONSTRUCTOR */
     public TAbstractBody() {}
   }
@@ -23,6 +31,13 @@ namespace Body
     public TBrain brain;
     public TLungs lungs;
     public TStomach stomach;
+    public override void Update(float deltaTime)
+    {
+      base.Update(deltaTime);
+      brain.Update(deltaTime);
+      lungs.Update(deltaTime);
+      stomach.Update(deltaTime);
+    }
     /* CONSTRUCTOR */
     public TBiologicalBody() : base()
     {

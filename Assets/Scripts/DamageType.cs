@@ -7,6 +7,7 @@ namespace DamageType
     Blunt,
     Scratch,
     Cut,
-    Piercing
+    Piercing,
+    Acid
   }
 }

@@ -25,6 +25,13 @@ namespace Bodypart
       remainingDamage = bone.Damage(remainingDamage, damType);
       return remainingDamage;
     }
+    /* Update this bodypart */
+    public void Update(float deltaTime)
+    {
+      skin.Update(deltaTime);
+      muscle.Update(deltaTime);
+      bone.Update(deltaTime);
+    }
     /* CONSTRUCTOR */
     public TBodypart()
     {
