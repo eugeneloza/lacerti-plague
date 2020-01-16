@@ -11,6 +11,7 @@ namespace DirtVolume
       Harmless,     //just a waste-volume of dirt on the surface. Doesn't do anything.
       //Smelly,       //Smells bad, nothing else
       Carbonis, Ferrumis,   //concentration of Lacerti Plague agents; slowly absorbed through the skin
+      //Natriumis, Magnesiumis, //fish-only infection, will immediately catch fire in contact with oxygen
       Disease,      //any non-lacerti disease; slowly absorbed through the skin
       Sticky,       //keeps all other dirt types on the surface
       Suppressant,  //suppresses Lacerti Plague agents; slowly absorbed through the skin
@@ -51,12 +52,11 @@ namespace DirtVolume
     /* CONSTRUCTOR */
     public TDirtVolume()
     {
-      damageRate[(int)TDirtType.Harmless] = 0f;
-      //damageRate[(int)TDirtType.Smelly] = 0f;
-      damageRate[(int)TDirtType.Carbonis] = 0f;
-      damageRate[(int)TDirtType.Disease] = 0f;
-      damageRate[(int)TDirtType.Sticky] = 0f;
-      damageRate[(int)TDirtType.Suppressant] = 0f;
+      /*foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType)))
+      {
+        damageRate[(int)d] = 0f;
+      }*/
+      //all other types are already zero-initialized
       damageRate[(int)TDirtType.Antiseptic] = 0.001f;
       damageRate[(int)TDirtType.Acid] = 1f;
       damageRate[(int)TDirtType.Soap] = 0.001f;
