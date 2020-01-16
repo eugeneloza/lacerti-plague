@@ -8,6 +8,7 @@ namespace DirtVolume
     /* Different dirt types that can be found at the surface */
     public enum TDirtType
     {
+      Water,        //Quickly dries up, but large volumes of water can be used to remove other types of dirt
       Harmless,     //just a waste-volume of dirt on the surface. Doesn't do anything.
       //Smelly,       //Smells bad, nothing else
       Carbonis, Ferrumis,   //concentration of Lacerti Plague agents; slowly absorbed through the skin
@@ -39,12 +40,23 @@ namespace DirtVolume
       }
       return v;
     }
+    private bool NotSticky(TDirtType d)
+    {
+      if ((d == TDirtType.Soap) || (d == TDirtType.Sticky))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
     private float VolumeWithoutSticky()
     {
       float v = 0;
       foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
       {
-        if (d != TDirtType.Sticky)
+        if (NotSticky(d))
         {
           v += dirt[(int)d];
         }
@@ -58,6 +70,7 @@ namespace DirtVolume
       foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType)))
       {
         dam += dirt[(int)d] * damageRate[(int)d];
+        //todo: dirt decays when "used"
       }
       return dam * deltaTime;
     }
@@ -65,7 +78,22 @@ namespace DirtVolume
     public void Update(float deltaTime)
     {
       
-      /* dirt fall-off */
+      /* ---- "soap" neutralizes "sticky" immediately ---- */
+      if (dirt[(int)TDirtType.Sticky] > dirt[(int)TDirtType.Soap])
+      {
+        float neutralized = dirt[(int)TDirtType.Sticky];
+        dirt[(int)TDirtType.Sticky] =- dirt[(int)TDirtType.Soap];
+        dirt[(int)TDirtType.Soap] -= neutralized;
+        dirt[(int)TDirtType.Harmless] += neutralized * 2;
+      }
+      else
+      {
+        dirt[(int)TDirtType.Soap] -= dirt[(int)TDirtType.Sticky];
+        dirt[(int)TDirtType.Harmless] += dirt[(int)TDirtType.Sticky] * 2;
+        dirt[(int)TDirtType.Sticky] = 0;
+      }
+      
+      /* ---- dirt fall-off ---- */
       //float v0 = Volume(); //I'm not sure if we want "sticky" dirt to "fall off" in a normal way - maybe, better only if neutralized
       float v0 = VolumeWithoutSticky();
       float v1 = dirt[(int)TDirtType.Sticky] * stickyRatio;
@@ -75,12 +103,15 @@ namespace DirtVolume
         float decayRate = volumeRatio * (float)Math.Pow(2, -deltaTime / dirtHalfLife);
         foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
         {
-          if (d != TDirtType.Sticky)
+          //if (NotSticky(d)) we want sticky dirt types to go off with water too!
           {
             dirt[(int)d] -= dirt[(int)d] * decayRate;
           }
         }
       }
+      
+      //todo: make the object wet
+      dirt[(int)TDirtType.Water] = 0;
     }
     /* CONSTRUCTOR */
     public TDirtVolume()
