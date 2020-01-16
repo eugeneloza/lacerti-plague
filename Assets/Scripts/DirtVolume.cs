@@ -1,25 +1,11 @@
 using UnityEngine;
 using System;
+using DirtType;
 
 namespace DirtVolume
 {
   public class TDirtVolume
   {
-    /* Different dirt types that can be found at the surface */
-    public enum TDirtType
-    {
-      Water,        //Quickly dries up, but large volumes of water can be used to remove other types of dirt; but maybe we'd want a different rinse mechanics
-      Harmless,     //just a waste-volume of dirt on the surface. Doesn't do anything.
-      //Smelly,       //Smells bad, nothing else
-      Carbonis, Ferrumis,   //concentration of Lacerti Plague agents; slowly absorbed through the skin
-      //Natriumis, Magnesiumis, //fish-only infection, will immediately catch fire in contact with oxygen
-      Disease,      //any non-lacerti disease; slowly absorbed through the skin
-      Sticky,       //keeps all other dirt types on the surface
-      Suppressant,  //suppresses Lacerti Plague agents; slowly absorbed through the skin
-      Antiseptic,   //destroys Disease on the skin
-      Acid,         //harms the object
-      Soap          //destroys Sticky and harms object; but as long as it isn't sticky itself it will "fall off" as soon as sticky is destroyed
-    }
     /* Sticky dirt type can hold 10x its volume of other reagents */
     public const float stickyRatio = 10f;
     /* Half-lives of dirt types; might want to make them more global */
@@ -77,7 +63,7 @@ namespace DirtVolume
     /* Update state of this dirt volume */
     public void Update(float deltaTime)
     {
-      
+
       /* ---- "soap" neutralizes "sticky" immediately ---- */
       if (dirt[(int)TDirtType.Sticky] > dirt[(int)TDirtType.Soap])
       {
@@ -92,7 +78,7 @@ namespace DirtVolume
         dirt[(int)TDirtType.Harmless] += dirt[(int)TDirtType.Sticky] * 2;
         dirt[(int)TDirtType.Sticky] = 0;
       }
-      
+
       /* ---- dirt fall-off ---- */
       //float v0 = Volume(); //I'm not sure if we want "sticky" dirt to "fall off" in a normal way - maybe, better only if neutralized
       float v0 = VolumeWithoutSticky();
@@ -109,7 +95,7 @@ namespace DirtVolume
           }
         }
       }
-      
+
       //todo: make the object wet
       dirt[(int)TDirtType.Water] = 0;
     }
