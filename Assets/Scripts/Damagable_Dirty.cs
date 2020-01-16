@@ -20,7 +20,7 @@ namespace Damagable
       /* CONSTRUCTOR */
       public TDirty() : base()
       {
-        Dirt = new TDirtVolume();      
+        Dirt = new TDirtVolume();
       }
     }
   }

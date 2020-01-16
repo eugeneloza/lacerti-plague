@@ -13,7 +13,7 @@ namespace Damagable
       {
         base.Update(deltaTime);
         //todo
-      }    
+      }
       /* CONSTRUCTOR */
       public TInfectable() : base() {}
     }

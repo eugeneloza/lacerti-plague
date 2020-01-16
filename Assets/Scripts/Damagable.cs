@@ -14,12 +14,12 @@ namespace Damagable
        it is never intended to be changed after created */
     private float maxMaxDurability;
     public float MaxMaxDurability
-    { 
+    {
       get { return maxMaxDurability ;}
       set { maxMaxDurability = value; MaxDurability = maxMaxDurability; }
     }
     /* Current "maximum durability" of this object
-       it diminishes by repairing, and the object can never be 
+       it diminishes by repairing, and the object can never be
        repaired over this value.
        some objects (such as peculari and biological tissues)
        can regenerate this value up to maxMaxDurability with time */
@@ -34,7 +34,7 @@ namespace Damagable
     public float Durability
       { get; set; }
     /* how much damage is completely absorbed */
-    public float[] absorbDamage; 
+    public float[] absorbDamage;
     /* what portion of unabsorbed damage is received by this object */
     public float[] damageResist;
     /* is this object broken? */

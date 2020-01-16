@@ -23,6 +23,6 @@ namespace Skin
       damageResist[(int)TDamageType.Scratch] = 0.8f;
       damageResist[(int)TDamageType.Cut] = 0.5f;
       damageResist[(int)TDamageType.Piercing] = 0.2f;
-    }    
+    }
   }
 }

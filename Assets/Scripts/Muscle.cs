@@ -21,6 +21,6 @@ namespace Muscle
       damageResist[(int)TDamageType.Scratch] = 1.0f;
       damageResist[(int)TDamageType.Cut] = 0.7f;
       damageResist[(int)TDamageType.Piercing] = 0.5f;
-    }    
+    }
   }
 }

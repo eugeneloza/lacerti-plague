@@ -20,9 +20,9 @@ namespace Body
     /* CONSTRUCTOR */
     public TAbstractBody() {}
   }
-  
+
   /* While ironbloods are still biological creatures, they should be treated separately */
-  
+
   /* Biological creatures, made of flesh and bone */
   public abstract class TBiologicalBody : TAbstractBody
   {
@@ -45,8 +45,8 @@ namespace Body
       lungs = new TLungs();
       stomach = new TStomach();
     }
-  }    
-  
+  }
+
   /* Humanoid body, also note that only humanoids can wear clothes */
   public class THumanoidBody : TBiologicalBody
   {
@@ -61,7 +61,7 @@ namespace Body
       Bottom,
       LLeg, RLeg,
       //LFoot, RFoot //maybe leave only legs
-    };    
+    };
     /* CONSTRUCTOR */
     public THumanoidBody() : base()
     {
@@ -75,5 +75,5 @@ namespace Body
       bodyparts[(int)TBodyparts.RLeg] = new TBodypart();
      }
   }
-  
+
 }

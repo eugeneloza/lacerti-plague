@@ -22,6 +22,6 @@ namespace Bone
       damageResist[(int)TDamageType.Scratch] = 1.0f;
       damageResist[(int)TDamageType.Cut] = 0.9f;
       damageResist[(int)TDamageType.Piercing] = 0.6f;
-    }    
+    }
   }
 }

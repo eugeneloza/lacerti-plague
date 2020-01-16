@@ -20,9 +20,9 @@ namespace InternalOrgan
       damageResist[(int)TDamageType.Scratch] = 1.0f;
       damageResist[(int)TDamageType.Cut] = 1.0f;
       damageResist[(int)TDamageType.Piercing] = 1.0f;
-    }    
+    }
   }
-  
+
   public class TBrain: TInternalOrgan
   {
     public TBrain() : base()
@@ -30,7 +30,7 @@ namespace InternalOrgan
       name = "brain";
     }
   }
-  
+
   public class TLungs: TInternalOrgan
   {
     public TLungs() : base()
@@ -38,7 +38,7 @@ namespace InternalOrgan
       name = "lungs and heart";
     }
   }
-  
+
   public class TStomach: TInternalOrgan
   {
     public TStomach() : base()
