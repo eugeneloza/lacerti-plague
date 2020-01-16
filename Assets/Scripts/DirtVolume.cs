@@ -8,7 +8,7 @@ namespace DirtVolume
     /* Different dirt types that can be found at the surface */
     public enum TDirtType
     {
-      Water,        //Quickly dries up, but large volumes of water can be used to remove other types of dirt
+      Water,        //Quickly dries up, but large volumes of water can be used to remove other types of dirt; but maybe we'd want a different rinse mechanics
       Harmless,     //just a waste-volume of dirt on the surface. Doesn't do anything.
       //Smelly,       //Smells bad, nothing else
       Carbonis, Ferrumis,   //concentration of Lacerti Plague agents; slowly absorbed through the skin
@@ -23,8 +23,8 @@ namespace DirtVolume
     /* Sticky dirt type can hold 10x its volume of other reagents */
     public const float stickyRatio = 10f;
     /* Half-lives of dirt types; might want to make them more global */
-    public const float dirtHalfLife = 10f;
-    public const float stickyHalfLife = 100f;
+    public const float dirtHalfLife = 100f; //in-game seconds/turns
+    //public const float stickyHalfLife = 84000f; //in-game seconds/turns (=a day)
     /* Volumes of every type of dirt in this volume */
     public float[] dirt;
     /* Constant damage rates of different dirt types
@@ -103,7 +103,7 @@ namespace DirtVolume
         float decayRate = volumeRatio * (float)Math.Pow(2, -deltaTime / dirtHalfLife);
         foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
         {
-          //if (NotSticky(d)) we want sticky dirt types to go off with water too!
+          //if (NotSticky(d)) //we want sticky dirt types to go off with water too!
           {
             dirt[(int)d] -= dirt[(int)d] * decayRate;
           }
