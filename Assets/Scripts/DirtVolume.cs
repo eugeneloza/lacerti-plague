@@ -20,10 +20,15 @@ namespace DirtVolume
       Soap          //destroys Sticky and harms object; but as long as it isn't sticky itself it will "fall off" as soon as sticky is destroyed
     }
     /* Sticky dirt type can hold 10x its volume of other reagents */
-    public const float StickyRatio = 10f; 
+    public const float stickyRatio = 10f;
+    /* Half-lives of dirt types; might want to make them more global */
+    public const float dirtHalfLife = 10f;
+    public const float stickyHalfLife = 100f;
     /* Volumes of every type of dirt in this volume */
     public float[] dirt;
-    private float[] damageRate;
+    /* Constant damage rates of different dirt types
+       todo: remake them into constants, saves RAM but not as convenient to handle */
+    private float[] damageRate = new float[Enum.GetNames(typeof(TDirtType)).Length];
     /* Total volume of the dirt */
     public float Volume()
     {
@@ -31,6 +36,18 @@ namespace DirtVolume
       foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
       {
         v += dirt[(int)d];
+      }
+      return v;
+    }
+    private float VolumeWithoutSticky()
+    {
+      float v = 0;
+      foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
+      {
+        if (d != TDirtType.Sticky)
+        {
+          v += dirt[(int)d];
+        }
       }
       return v;
     }
@@ -47,7 +64,23 @@ namespace DirtVolume
     /* Update state of this dirt volume */
     public void Update(float deltaTime)
     {
-      //todo
+      
+      /* dirt fall-off */
+      //float v0 = Volume(); //I'm not sure if we want "sticky" dirt to "fall off" in a normal way - maybe, better only if neutralized
+      float v0 = VolumeWithoutSticky();
+      float v1 = dirt[(int)TDirtType.Sticky] * stickyRatio;
+      if (v0 > v1)
+      {
+        float volumeRatio = (v0 - v1) / v1; //always > 0.0f
+        float decayRate = volumeRatio * (float)Math.Pow(2, -deltaTime / dirtHalfLife);
+        foreach (TDirtType d in (TDirtType[]) Enum.GetValues(typeof(TDirtType))) //The typecast is not strictly necessary, but it does make the code 0.5 ns faster. @Peter Mortensen
+        {
+          if (d != TDirtType.Sticky)
+          {
+            dirt[(int)d] -= dirt[(int)d] * decayRate;
+          }
+        }
+      }
     }
     /* CONSTRUCTOR */
     public TDirtVolume()
