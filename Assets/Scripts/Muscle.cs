@@ -1,5 +1,5 @@
 using UnityEngine;
-using Damagable;
+using Damagable.Infectable;
 using DamageType;
 
 namespace Muscle

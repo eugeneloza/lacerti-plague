@@ -1,6 +1,5 @@
 using UnityEngine;
 using DamageType;
-using DirtVolume;
 
 namespace Damagable
 {
@@ -93,36 +92,5 @@ namespace Damagable
     }
     /* CONSTRUCTOR */
     public TDamagable() {}
-  }
-  
-  /* Object that can get dirty, such as skin or clothes */
-  public abstract class TDirty : TDamagable
-  {
-    /* Dirt stuck to the surface of this object */
-    public TDirtVolume Dirt;
-    public override void Update(float deltaTime)
-    {
-      base.Update(deltaTime);
-      Damage(Dirt.GetAcidDamage(deltaTime), TDamageType.Acid);
-      Dirt.Update(deltaTime);
-    }
-    /* CONSTRUCTOR */
-    public TDirty() : base()
-    {
-      Dirt = new TDirtVolume();      
-    }
-  }
-  
-  /* Object that can get infected, such as muscles or internal organs */
-  public abstract class TInfectable : TDamagable
-  {
-    //todo
-    public override void Update(float deltaTime)
-    {
-      base.Update(deltaTime);
-      //todo
-    }    
-    /* CONSTRUCTOR */
-    public TInfectable() : base() {}
   }
 }

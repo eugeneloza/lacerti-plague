@@ -1,5 +1,5 @@
 using UnityEngine;
-using Damagable;
+using Damagable.Dirty;
 using DamageType;
 
 namespace Skin
