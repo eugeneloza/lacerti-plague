@@ -9,4 +9,4 @@ The player character takes a hot air baloon crouise, which ends up in a crash du
 
 # License
 
-The code is licensed under GPLv3. However, note that as the code is a set Unity 3D scripts, it cannot be considered free and opensource software.
+The code is licensed under GPLv3. However, note that as the code is a set Unity 3D scripts, it cannot be considered free and opensource software, because it requires proprietary dependencies to be compiled and run.
