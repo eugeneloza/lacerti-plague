@@ -6,3 +6,7 @@ The overall idea is to test "items flow" game design concept. The items are not 
 
 # Story
 The player character takes a hot air baloon crouise, which ends up in a crash due to a rogue storm. Washed ashore, he/she finds him/herself as a presumably lone survivor in Patrida Peninsula. Once a home for glorious Archai civilization, now a tropic wasteland, wiped clean by Lacerti Plague, an uncurable lethal disease of unknown origin. Those few intelligent beings met were thrown here as a slow death sentence for their crimes, fighting for the scraps to survive another day. The infection will start with the first scratch.
+
+# License
+
+The code is licensed under GPLv3. However, note that as the code is a set Unity 3D scripts, it cannot be considered free and opensource software.
